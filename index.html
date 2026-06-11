@@ -22,16 +22,16 @@
     /* GATE */
 
     .gate{
-      position:fixed;
-      inset:0;
-      background:#050505;
-      color:white;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-      transition:1s ease;
+  position:fixed;
+  inset:0;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+  transition:1s ease;
+  overflow:hidden;
     }
 
     .gate h1{
@@ -63,6 +63,30 @@
       pointer-events:none;
     }
 
+    .slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 2s ease-in-out;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.gate-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+.gate h1,
+.gate button{
+  position:relative;
+  z-index:5;
+}
     /* MAIN PAGE */
 
     .site{
@@ -167,10 +191,17 @@
 
 <body>
 
-  <div class="gate" id="gate">
-    <h1>ROME AMIRI</h1>
-    <button onclick="enterSite()">Enter Website</button>
-  </div>
+ <div class="gate" id="gate">
+
+  <div class="slide active"></div>
+  <div class="slide"></div>
+
+  <div class="gate-overlay"></div>
+
+  <h1>ROME AMIRI</h1>
+  <button onclick="enterSite()">Enter Website</button>
+
+</div>
 
   <main class="site" id="site">
 
@@ -205,10 +236,49 @@
   </main>
 
   <script>
-    function enterSite(){
-      document.getElementById("gate").classList.add("hide");
-      document.getElementById("site").classList.add("show");
-      document.body.style.overflow = "auto";
+    <script>
+
+function enterSite(){
+  document.getElementById("gate").classList.add("hide");
+  document.getElementById("site").classList.add("show");
+  document.body.style.overflow = "auto";
+}
+
+const images = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg",
+  "images/photo4.jpg",
+  "images/photo5.jpg"
+];
+
+const slides = document.querySelectorAll(".slide");
+
+let current = 0;
+let activeSlide = 0;
+
+slides[0].style.backgroundImage =
+  `url(${images[0]})`;
+
+setInterval(() => {
+
+  const nextSlide =
+    activeSlide === 0 ? 1 : 0;
+
+  current =
+    (current + 1) % images.length;
+
+  slides[nextSlide].style.backgroundImage =
+    `url(${images[current]})`;
+
+  slides[nextSlide].classList.add("active");
+  slides[activeSlide].classList.remove("active");
+
+  activeSlide = nextSlide;
+
+}, 10000);
+
+</script>
     }
   </script>
 
