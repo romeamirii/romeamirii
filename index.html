@@ -13,207 +13,169 @@
 }
 
 body{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background:#fff;
-  color:#000000;
+  color:#111;
   overflow:hidden;
 }
 
 /* GATE */
-
 .gate{
   position:fixed;
   inset:0;
-  overflow:hidden;
+  background:#000;
+  color:#fff;
+  z-index:999;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  z-index:999;
-  transition:opacity 1.5s ease;
+  transition:opacity 1.2s ease;
 }
 
-.gate.hide-gate{
+.gate.hide{
   opacity:0;
   pointer-events:none;
 }
 
-.slideshow{
+.gate-logo{
   position:absolute;
-  inset:0;
-  z-index:-2;
-}
-
-.slideshow img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 2s ease-in-out, transform 15s ease;
-  transform:scale(1);
-}
-
-.slideshow img.active{
-  opacity:1;
-  transform:scale(1.05);
-}
-
-.gate::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  z-index:-1;
-}
-
-.gate h1{
-  position:absolute;
-  top:40px;
+  top:45px;
   left:50%;
   transform:translateX(-50%);
-  font-size:2rem;
-  letter-spacing:8px;
-  color:white;
-  font-weight:300;
+  font-size:1.8rem;
+  letter-spacing:7px;
+  font-weight:400;
+  text-transform:uppercase;
 }
 
-.gate button{
+.enter{
   background:transparent;
-  border:1px solid rgba(255,255,255,0.6);
-  color:white;
-  padding:14px 35px;
-  cursor:pointer;
+  border:1px solid rgba(255,255,255,.7);
+  color:#fff;
+  padding:14px 38px;
   letter-spacing:3px;
+  font-size:.8rem;
+  cursor:pointer;
+  text-transform:uppercase;
 }
 
-.gate button:hover{
-  background:white;
-  color:black;
+.enter:hover{
+  background:#fff;
+  color:#000;
 }
 
-/* MAIN SITE */
-
+/* SITE */
 .site{
-  display:flex;
-  min-height:100vh;
   opacity:0;
-  transition:opacity 1.5s ease;
+  transition:opacity 1.2s ease;
 }
 
-.site.show-site{
+.site.show{
   opacity:1;
 }
 
-/* SIDEBAR */
-
 .sidebar{
-  width:260px;
-  min-height:100vh;
-  padding:55px 45px;
   position:fixed;
   left:0;
   top:0;
+  width:260px;
+  height:100vh;
   background:#fff;
+  padding:55px 38px;
 }
 
 .logo{
-  font-size:2.2rem;
+  font-size:2.4rem;
   font-weight:900;
   letter-spacing:-2px;
-  margin-bottom:5px;
+  line-height:1;
 }
 
-.subtitle{
+.tagline{
   font-size:.75rem;
   color:#999;
+  margin-top:10px;
   margin-bottom:45px;
 }
 
-.nav-title{
-  color:#999;
-  margin-bottom:12px;
+.menu-title{
+  color:#aaa;
+  margin-bottom:15px;
+  font-size:.95rem;
 }
 
-.nav{
+nav{
   display:flex;
   flex-direction:column;
   gap:14px;
-  margin-bottom:35px;
+  margin-bottom:38px;
 }
 
-.nav a{
+nav a{
   color:#111;
   text-decoration:none;
   font-size:1rem;
-  font-weight:600;
+  font-weight:700;
 }
 
-.small-links{
+.extra-links{
   display:flex;
   flex-direction:column;
   gap:12px;
-  margin-bottom:30px;
+  margin-bottom:35px;
 }
 
-.small-links a{
+.extra-links a{
   color:#111;
   text-decoration:none;
-  font-size:.9rem;
+  font-size:.85rem;
 }
 
 .socials{
   display:flex;
-  gap:15px;
+  gap:16px;
   font-size:1.4rem;
 }
 
-/* GRID */
-
+/* GALLERY */
 .gallery{
   margin-left:260px;
-  padding:45px 45px 45px 20px;
-  width:calc(100% - 260px);
+  padding:45px 40px 45px 20px;
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:10px;
+  align-items:start;
 }
 
-.gallery img{
+.column{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.photo{
   width:100%;
-  height:100%;
   object-fit:cover;
   display:block;
 }
 
-.tall{
-  height:620px;
-}
-
-.medium{
-  height:420px;
-}
-
-.short{
-  height:250px;
-}
-
-/* MOBILE */
+.tall{ height:620px; }
+.medium{ height:430px; }
+.short{ height:260px; }
 
 @media(max-width:900px){
+  body{
+    overflow:auto;
+  }
+
   .sidebar{
     position:relative;
     width:100%;
-    min-height:auto;
-  }
-
-  .site{
-    flex-direction:column;
+    height:auto;
   }
 
   .gallery{
     margin-left:0;
-    width:100%;
     grid-template-columns:1fr;
     padding:20px;
   }
@@ -224,30 +186,21 @@ body{
 <body>
 
 <!-- GATE -->
+<section class="gate" id="gate">
+  <div class="gate-logo">ROME AMIRI</div>
+  <button class="enter" id="enterBtn">Enter Website</button>
+</section>
 
-<div class="gate" id="gate">
-  <div class="slideshow">
-    <img src="images/gate1.jpg" class="active">
-    <img src="images/gate2.jpg">
-    <img src="images/gate3.jpg">
-    <img src="images/gate4.jpg">
-  </div>
-
-  <h1>ROME AMIRI</h1>
-  <button id="enterBtn">ENTER</button>
-</div>
-
-<!-- MAIN WEBSITE -->
-
-<div class="site" id="site">
+<!-- WEBSITE -->
+<section class="site" id="site">
 
   <aside class="sidebar">
-    <div class="logo">rome amiri</div>
-    <div class="subtitle">photography / videography</div>
+    <div class="logo">rome<br>amiri</div>
+    <div class="tagline">photography / videography</div>
 
-    <div class="nav-title">recent.</div>
+    <div class="menu-title">recent.</div>
 
-    <nav class="nav">
+    <nav>
       <a href="#">outdoor.</a>
       <a href="#">cities.</a>
       <a href="#">lifestyle.</a>
@@ -255,7 +208,7 @@ body{
       <a href="#">reels&loops.</a>
     </nav>
 
-    <div class="small-links">
+    <div class="extra-links">
       <a href="#">about.</a>
       <a href="#">imprint</a>
     </div>
@@ -266,39 +219,17 @@ body{
     </div>
   </aside>
 
-  <main class="gallery">
-    <img src="images/photo1.jpg" class="tall">
-    <img src="images/photo2.jpg" class="medium">
-    <img src="images/photo3.jpg" class="short">
 
-    <img src="images/photo4.jpg" class="medium">
-    <img src="images/photo5.jpg" class="short">
-    <img src="images/photo6.jpg" class="tall">
-
-    <img src="images/photo7.jpg" class="medium">
-    <img src="images/photo8.jpg" class="tall">
-    <img src="images/photo9.jpg" class="medium">
-  </main>
-
-</div>
+</section>
 
 <script>
-const slides = document.querySelectorAll(".slideshow img");
-let current = 0;
-
-setInterval(() => {
-  slides[current].classList.remove("active");
-  current = (current + 1) % slides.length;
-  slides[current].classList.add("active");
-}, 15000);
-
 const enterBtn = document.getElementById("enterBtn");
 const gate = document.getElementById("gate");
 const site = document.getElementById("site");
 
-enterBtn.addEventListener("click", function(){
-  gate.classList.add("hide-gate");
-  site.classList.add("show-site");
+enterBtn.addEventListener("click", () => {
+  gate.classList.add("hide");
+  site.classList.add("show");
   document.body.style.overflow = "auto";
 });
 </script>
