@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rome Amiri</title>
 
+<!-- PASSION ONE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
@@ -14,22 +19,23 @@
 
 body{
   font-family:Arial, Helvetica, sans-serif;
-  background:#fff;
+  background:#0f0f0f;
   color:#111;
   overflow:hidden;
 }
 
 /* GATE */
+
 .gate{
   position:fixed;
   inset:0;
-  background:#000;
-  color:#fff;
   z-index:999;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:opacity 1.2s ease;
+  background:#000;
+  overflow:hidden;
+  transition:opacity 1.3s ease;
 }
 
 .gate.hide{
@@ -37,131 +43,243 @@ body{
   pointer-events:none;
 }
 
+.gate-slideshow{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+}
+
+.gate-slideshow img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1);
+  transition:opacity 2s ease, transform 15s ease;
+}
+
+.gate-slideshow img.active{
+  opacity:1;
+  transform:scale(1.06);
+}
+
+.gate::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:-1;
+}
+
+/* SMALLER GATE LOGO */
+
 .gate-logo{
   position:absolute;
-  top:45px;
+  top:30px;
   left:50%;
   transform:translateX(-50%);
-  font-size:1.8rem;
-  letter-spacing:7px;
-  font-weight:400;
+  color:white;
+  font-family:'Passion One', sans-serif;
+  font-size:1.6rem;
+  letter-spacing:1px;
+  font-weight:700;
   text-transform:uppercase;
 }
+
+/* ENTER BUTTON */
 
 .enter{
   background:transparent;
-  border:1px solid rgba(255,255,255,.7);
-  color:#fff;
+  color:white;
+  border:1px solid rgba(255,255,255,.65);
   padding:14px 38px;
   letter-spacing:3px;
-  font-size:.8rem;
   cursor:pointer;
   text-transform:uppercase;
+  transition:.3s ease;
 }
 
 .enter:hover{
-  background:#fff;
-  color:#000;
+  background:white;
+  color:black;
 }
 
 /* SITE */
+
 .site{
   opacity:0;
-  transition:opacity 1.2s ease;
+  transition:opacity 1.3s ease;
 }
 
 .site.show{
   opacity:1;
 }
 
+/* SIDEBAR */
+
 .sidebar{
   position:fixed;
   left:0;
   top:0;
-  width:260px;
+  width:270px;
   height:100vh;
   background:#fff;
-  padding:55px 38px;
+  padding:55px 40px;
+  z-index:10;
 }
 
 .logo{
-  font-size:2.4rem;
+  font-size:2.2rem;
   font-weight:900;
+  line-height:.9;
   letter-spacing:-2px;
-  line-height:1;
+  margin-bottom:12px;
 }
 
 .tagline{
   font-size:.75rem;
-  color:#999;
-  margin-top:10px;
-  margin-bottom:45px;
+  color:#888;
+  margin-bottom:50px;
 }
 
-.menu-title{
+.nav-title{
   color:#aaa;
-  margin-bottom:15px;
-  font-size:.95rem;
+  font-size:.9rem;
+  margin-bottom:14px;
 }
 
-nav{
+.nav{
   display:flex;
   flex-direction:column;
   gap:14px;
-  margin-bottom:38px;
+  margin-bottom:42px;
 }
 
-nav a{
+.nav a{
   color:#111;
   text-decoration:none;
-  font-size:1rem;
   font-weight:700;
+  font-size:1rem;
 }
 
-.extra-links{
+.nav a:hover{
+  opacity:.45;
+}
+
+.side-bottom{
+  position:absolute;
+  bottom:45px;
+  left:40px;
+  font-size:.75rem;
+  color:#777;
+  line-height:1.6;
+}
+
+/* HOME */
+
+.home{
+  margin-left:270px;
+  min-height:100vh;
+  background:#111;
+  color:white;
+  padding:45px;
+}
+
+.feature{
+  min-height:70vh;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:28px;
+  margin-bottom:28px;
+}
+
+.feature-image{
+  background:url("images/feature.jpg") center center / cover no-repeat;
+  min-height:70vh;
+}
+
+.feature-text{
+  border:1px solid rgba(255,255,255,.15);
+  padding:35px;
   display:flex;
   flex-direction:column;
-  gap:12px;
-  margin-bottom:35px;
+  justify-content:space-between;
 }
 
-.extra-links a{
-  color:#111;
-  text-decoration:none;
-  font-size:.85rem;
+.feature-text span{
+  color:#aaa;
+  font-size:.8rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.socials{
-  display:flex;
-  gap:16px;
-  font-size:1.4rem;
+.feature-text h1{
+  font-size:4rem;
+  line-height:.9;
+  letter-spacing:-3px;
+  margin-top:25px;
 }
 
-/* GALLERY */
-.gallery{
-  margin-left:260px;
-  padding:45px 40px 45px 20px;
+.feature-text p{
+  color:#bbb;
+  font-size:.95rem;
+  line-height:1.6;
+  max-width:360px;
+}
+
+/* PROJECT GRID */
+
+.projects{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:10px;
-  align-items:start;
+  gap:12px;
 }
 
-.column{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.card{
+  position:relative;
+  height:360px;
+  overflow:hidden;
+  background:#222;
 }
 
-.photo{
+.card img{
   width:100%;
+  height:100%;
   object-fit:cover;
-  display:block;
+  transition:transform .8s ease;
 }
 
-.tall{ height:620px; }
-.medium{ height:430px; }
-.short{ height:260px; }
+.card:hover img{
+  transform:scale(1.06);
+}
+
+.card-info{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  color:white;
+  z-index:2;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent, rgba(0,0,0,.65));
+}
+
+.card-info h3{
+  font-size:1.2rem;
+  margin-bottom:5px;
+}
+
+.card-info p{
+  font-size:.8rem;
+  color:#ccc;
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
   body{
@@ -174,10 +292,28 @@ nav a{
     height:auto;
   }
 
-  .gallery{
+  .side-bottom{
+    position:relative;
+    left:0;
+    bottom:0;
+    margin-top:40px;
+  }
+
+  .home{
     margin-left:0;
-    grid-template-columns:1fr;
     padding:20px;
+  }
+
+  .feature{
+    grid-template-columns:1fr;
+  }
+
+  .feature-text h1{
+    font-size:3rem;
+  }
+
+  .projects{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -186,39 +322,93 @@ nav a{
 <body>
 
 <!-- GATE -->
+
 <section class="gate" id="gate">
+
+  <div class="gate-slideshow">
+    <img src="images/gate1.jpg" class="active">
+    <img src="images/gate2.jpg">
+    <img src="images/gate3.jpg">
+    <img src="images/gate4.jpg">
+  </div>
+
   <div class="gate-logo">ROME AMIRI</div>
+
   <button class="enter" id="enterBtn">Enter Website</button>
+
 </section>
 
 <!-- WEBSITE -->
+
 <section class="site" id="site">
 
   <aside class="sidebar">
     <div class="logo">rome<br>amiri</div>
-    <div class="tagline">photography / videography</div>
+    <div class="tagline">photography / videography / design</div>
 
-    <div class="menu-title">recent.</div>
+    <div class="nav-title">index.</div>
 
-    <nav>
-      <a href="#">outdoor.</a>
-      <a href="#">cities.</a>
-      <a href="#">lifestyle.</a>
-      <a href="#">sneaker.</a>
-      <a href="#">reels&loops.</a>
+    <nav class="nav">
+      <a href="#">featured.</a>
+      <a href="#">film.</a>
+      <a href="#">photography.</a>
+      <a href="#">archive.</a>
+      <a href="#">contact.</a>
     </nav>
 
-    <div class="extra-links">
-      <a href="#">about.</a>
-      <a href="#">imprint</a>
-    </div>
-
-    <div class="socials">
-      <span>f</span>
-      <span>◎</span>
+    <div class="side-bottom">
+      visual archive.<br>
+      photography / film / design
     </div>
   </aside>
 
+  <main class="home">
+
+    <section class="feature">
+      <div class="feature-image"></div>
+
+      <div class="feature-text">
+        <div>
+          <span>Featured Project</span>
+          <h1>Visual<br>Archive</h1>
+        </div>
+
+        <p>
+          A personal space for film, photography, outdoor visuals,
+          creative direction, and personal documentation.
+        </p>
+      </div>
+    </section>
+
+    <section class="projects">
+
+      <div class="card">
+        <img src="images/project1.jpg">
+        <div class="card-info">
+          <h3>Outdoor Studies</h3>
+          <p>creative direction</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/project2.jpg">
+        <div class="card-info">
+          <h3>City Frames</h3>
+          <p>street / movement</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/project3.jpg">
+        <div class="card-info">
+          <h3>Motion Work</h3>
+          <p>video / reels</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
 
 </section>
 
@@ -232,6 +422,17 @@ enterBtn.addEventListener("click", () => {
   site.classList.add("show");
   document.body.style.overflow = "auto";
 });
+
+/* GATE SLIDESHOW */
+
+const gateSlides = document.querySelectorAll(".gate-slideshow img");
+let currentSlide = 0;
+
+setInterval(() => {
+  gateSlides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % gateSlides.length;
+  gateSlides[currentSlide].classList.add("active");
+}, 15000);
 </script>
 
 </body>
