@@ -1,94 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rome Amiri</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#f4f4f0;
+  color:#111;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.site{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:220px;
+  height:100vh;
+  position:fixed;
+  left:0;
+  top:0;
+  background:#f7f7f4;
+  border-right:1px solid rgba(0,0,0,.08);
+  padding:35px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:'Passion One', sans-serif;
+  font-size:1rem;
+  text-transform:uppercase;
+}
+
+nav{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#111;
+  font-size:.75rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s ease;
+}
+
+nav a:hover{
+  opacity:.35;
+}
+
+.footer{
+  font-size:.65rem;
+  color:#666;
+  line-height:1.6;
+  text-transform:uppercase;
+}
+
+/* MAIN */
+
+.main{
+  margin-left:220px;
+  width:calc(100% - 220px);
+  padding:35px;
+}
+
+.hero{
+  margin-bottom:35px;
+}
+
+.hero h1{
+  font-family:'Passion One', sans-serif;
+  font-size:2.2rem;
+  line-height:.9;
+  text-transform:uppercase;
+}
+
+.hero p{
+  margin-top:12px;
+  font-size:.75rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#666;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1.5fr .8fr;
+  gap:24px;
+}
+
+.project{
+  position:relative;
+  overflow:hidden;
+  background:#ddd;
+  text-decoration:none;
+}
+
+.project.large{
+  height:76vh;
+}
+
+.project.small{
+  height:37vh;
+}
+
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.project img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transition:.8s ease;
+}
+
+.project:hover img{
+  transform:scale(1.03);
+  filter:grayscale(0%);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.4), transparent);
+}
+
+.caption{
+  position:absolute;
+  bottom:18px;
+  left:18px;
+  z-index:2;
+  color:white;
+}
+
+.caption h2{
+  font-size:.9rem;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:5px;
+}
+
+.caption span{
+  font-size:.65rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .site{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+    flex-direction:row;
+    align-items:center;
+  }
+
+  nav{
+    flex-direction:row;
+    gap:14px;
+  }
+
+  .footer{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:20px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .project.large,
+  .project.small{
+    height:50vh;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<section class="gate" id="gate">
-
-  <div class="gate-slideshow">
-    <img src="images/gate1.jpg" class="active">
-    <img src="images/gate2.jpg">
-    <img src="images/gate3.jpg">
-    <img src="images/gate4.jpg">
-  </div>
-
-  <div class="gate-logo">ROME AMIRI</div>
-
-  <button class="enter" id="enterBtn">Enter Website</button>
-
-</section>
-
-<section class="site" id="site">
+<div class="site">
 
   <aside class="sidebar">
-    <div class="logo">rome<br>amiri</div>
-    <div class="tagline">photography / videography / design</div>
+    <div class="logo">Rome Amiri</div>
 
-    <div class="nav-title">index.</div>
-
-    <nav class="nav">
-      <a href="featured.html">featured.</a>
-      <a href="film.html">film.</a>
-      <a href="photography.html">photography.</a>
-      <a href="archive.html">archive.</a>
-      <a href="contact.html">contact.</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="side-bottom">
-      visual archive.<br>
-      photography / film / design
+    <div class="footer">
+      Photo / Film / Design<br>
+      California
     </div>
   </aside>
 
-  <main class="home">
+  <main class="main">
 
-    <section class="feature">
-      <div class="feature-image"></div>
-
-      <div class="feature-text">
-        <div>
-          <span>Featured Project</span>
-          <h1>Visual<br>Archive</h1>
-        </div>
-
-        <p>
-          A personal space for film, photography, creative direction,
-          and personal documentation.
-        </p>
-      </div>
+    <section class="hero">
+      <h1>Rome Amiri</h1>
+      <p>A visual portfolio exploring film, photography, and design.</p>
     </section>
 
-    <section class="projects">
+    <section class="grid">
 
-      <div class="card">
-        <img src="images/project1.jpg">
-      </div>
+      <a href="work.html" class="project large">
+        <img src="images/home-1.jpg" alt="">
+        <div class="overlay"></div>
+        <div class="caption">
+          <h2>Selected Work</h2>
+          <span>Film / Photography</span>
+        </div>
+      </a>
 
-      <div class="card">
-        <img src="images/project2.jpg">
-      </div>
+      <div class="stack">
 
-      <div class="card">
-        <img src="images/project3.jpg">
+        <a href="about.html" class="project small">
+          <img src="images/home-2.jpg" alt="">
+          <div class="overlay"></div>
+          <div class="caption">
+            <h2>About</h2>
+            <span>Identity / Direction</span>
+          </div>
+        </a>
+
+        <a href="contact.html" class="project small">
+          <img src="images/home-3.jpg" alt="">
+          <div class="overlay"></div>
+          <div class="caption">
+            <h2>Contact</h2>
+            <span>Inquiries / Questions</span>
+          </div>
+        </a>
+
       </div>
 
     </section>
 
   </main>
 
-</section>
+</div>
 
 </body>
 </html>
